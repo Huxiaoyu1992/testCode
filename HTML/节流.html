@@ -1,0 +1,39 @@
+<!--
+ * @Author: huxiaoyu
+ * @LastEditors: huxiaoyu
+ * @Date: 2020-05-12 10:08:01
+ * @LastEditTime: 2020-09-17 16:12:16
+ * @Description: 
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+ </head>
+ <body id="scrollItem">
+   <div style="height: 600px; background-color: pink;"></div>
+   <input type="text" id="input">
+  <script>
+     const ipt = document.getElementById('input')
+     function throttle(fn) {
+       let canRun = true
+       return function () {
+         if (!canRun) return
+         canRun = false
+         setTimeout(() => {
+           fn.apply(this, arguments)
+         }, 1111)
+       }
+     }
+
+     function doFunc(e) {
+       console.log(e)
+     }
+
+     ipt.addEventListener('change', throttle(fn))
+
+  </script>
+ </body>
+ </html>

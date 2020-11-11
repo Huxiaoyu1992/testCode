@@ -1,0 +1,27 @@
+<!--
+ * @Author: huxiaoyu
+ * @LastEditors: huxiaoyu
+ * @Date: 2020-05-25 15:03:46
+ * @LastEditTime: 2020-05-25 15:10:15
+ * @Description: jsonp
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const script = document.createElement('script')
+    script.type = 'text/script'
+    const cb = res => {
+      console.log(1)
+    }
+    const urlSrc = 'https://www.baidu.com/a?data=1&callback=cb'
+    script.setAttribute('src',urlSrc)
+    document.querySelector('head').appendChild(script)
+  </script>
+</body>
+</html> 

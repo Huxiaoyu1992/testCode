@@ -1,0 +1,57 @@
+<!--
+ * @Author: huxiaoyu
+ * @LastEditors: huxiaoyu
+ * @Date: 2020-12-08 14:59:15
+ * @LastEditTime: 2020-12-08 15:04:35
+ * @Description: 事件执行顺序
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义事件</title>
+</head>
+<body>
+  <ul class="ul">
+    <li class="li">
+      <button class="btn">点我测试执行顺序</button>
+    </li>
+  </ul>
+  
+  <script>
+    window.onload = function() {
+      const myEvent = document.createEvent('CustomEvent');
+      myEvent.initEvent('myEvent', true, true);
+
+      const btn = document.querySelector('.btn');
+      btn.addEventListener('myEvent', function(e) {
+        console.log('button');
+      })
+
+      const li = document.querySelector('.li');
+      li.addEventListener('myEvent', (e) => {
+        console.log('li');
+      })
+
+      const ul = document.querySelector('.ul');
+      li.addEventListener('myEvent', (e) => {
+        console.log('ul');
+      })
+
+      document.addEventListener('myEvent', (e) => {
+        console.log('document');
+      })
+
+      window.addEventListener('myEvent', (e) => {
+        console.log('window');
+      })
+
+      setTimeout(() => {
+        btn.dispatchEvent(myEvent); // button ->li -> ul -> document -> window (chrome浏览器下)
+      }, 2000);
+    };
+  </script>
+</body>
+</html>
